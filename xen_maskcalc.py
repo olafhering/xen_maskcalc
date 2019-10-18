@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/python3
 
 #  Xen Mask Calculator - Calculate CPU masking information based on cpuid(1)
 #  Copyright (C) 2017 Armando Vega
