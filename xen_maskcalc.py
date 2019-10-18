@@ -118,7 +118,20 @@ def print_verbose_masking_info(nodes):
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='A utility that calculates a XEN CPUID difference mask')
+    epilog = """The individual 'node_files' are generated with 'cpuid -1r':
+    server1~$ cpuid -1r > node1
+    server2~$ cpuid -1r > node2
+    server3~$ cpuid -1r > node3
+
+    ~$ {0} node1 node2 node3
+
+    Use 'zypper install cpuid' to install the cpuid.rpm.
+    """.format(sys.argv[0])
+    parser = argparse.ArgumentParser(
+             formatter_class=argparse.RawDescriptionHelpFormatter,
+             description='A utility that calculates a XEN CPUID difference mask',
+             epilog=epilog
+             )
     parser.add_argument('node_files', nargs='*', help='Filenames of XEN node CPUID outputs')
     parser.add_argument('-v', '--verbose', action='store_true', help='Get detailed mask derivation information')
     args = parser.parse_args()
