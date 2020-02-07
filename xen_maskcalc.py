@@ -25,6 +25,159 @@ EAX1_MATCH = '0x00000001 0x00:'
 EAX7_MATCH = '0x00000007 0x00:'
 EXP_LINELN = 76
 
+libxl_names_ecx1 = []
+libxl_names_edx1 = []
+libvirt_names_ecx1 = []
+libvirt_names_edx1 = []
+
+libxl_names_ebx7 = []
+libxl_names_ecx7 = []
+libvirt_names_ebx7 = []
+libvirt_names_ecx7 = []
+
+def fill_ecx1(bit, libxl, libvirt):
+    if libxl_names_ecx1[bit]:
+       print("ecx bit %s already set: libxl %s libvirt %s. Ignoring %s/%s\n" % (bit, libxl_names_ecx1[bit], libvirt_names_ecx1[bit], libxl, libvirt))
+       return
+    libxl_names_ecx1[bit] = libxl
+    libvirt_names_ecx1[bit] = libvirt
+
+def fill_edx1(bit, libxl, libvirt):
+    if libxl_names_edx1[bit]:
+       print("edx bit %s already set: libxl %s libvirt %s. Ignoring %s/%s\n" % (bit, libxl_names_edx1[bit], libvirt_names_edx1[bit], libxl, libvirt))
+       return
+    libxl_names_edx1[bit] = libxl
+    libvirt_names_edx1[bit] = libvirt
+
+def fill_ebx7(bit, libxl, libvirt):
+    if libxl_names_ebx7[bit]:
+       print("edx bit %s already set: libxl %s libvirt %s. Ignoring %s/%s\n" % (bit, libxl_names_ebx7[bit], libvirt_names_ebx7[bit], libxl, libvirt))
+       return
+    libxl_names_ebx7[bit] = libxl
+    libvirt_names_ebx7[bit] = libvirt
+
+def fill_ecx7(bit, libxl, libvirt):
+    if libxl_names_ecx7[bit]:
+       print("ecx bit %s already set: libxl %s libvirt %s. Ignoring %s/%s\n" % (bit, libxl_names_ecx7[bit], libvirt_names_ecx7[bit], libxl, libvirt))
+       return
+    libxl_names_ecx7[bit] = libxl
+    libvirt_names_ecx7[bit] = libvirt
+
+def fill_bit_names():
+    for i in range(0,32):
+        libxl_names_ecx1.append(None)
+        libxl_names_edx1.append(None)
+        libxl_names_ebx7.append(None)
+        libxl_names_ecx7.append(None)
+        libvirt_names_ecx1.append(None)
+        libvirt_names_edx1.append(None)
+        libvirt_names_ebx7.append(None)
+        libvirt_names_ecx7.append(None)
+
+    fill_ecx1(0, "sse3", "sse3")
+    fill_ecx1(1, "pclmulqdq", "pclmulqdq")
+    fill_ecx1(2, "dtes64", "dtes64")
+    fill_ecx1(3, "monitor", "monitor")
+    fill_ecx1(4, "dscpl", "dscpl")
+    fill_ecx1(5, "vmx", "vmx")
+    fill_ecx1(6, "smx", "smx")
+    fill_ecx1(7, "est", "est")
+    fill_ecx1(8, "tm2", "tm2")
+    fill_ecx1(9, "ssse3", "ssse3")
+    fill_ecx1(10, "cntxid", "cntxid")
+    fill_ecx1(12, "fma", "fma")
+    fill_ecx1(13, "cmpxchg16", "cmpxchg16")
+    fill_ecx1(14, "xtpr", "xtpr")
+    fill_ecx1(15, "pdcm", "pdcm")
+    fill_ecx1(17, "pcid", "pcid")
+    fill_ecx1(18, "dca", "dca")
+    fill_ecx1(19, "sse4_1", "sse4_1")
+    fill_ecx1(20, "sse4_2", "sse4_2")
+    fill_ecx1(21, "x2apic", "x2apic")
+    fill_ecx1(22, "movbe", "movbe")
+    fill_ecx1(23, "popcnt", "popcnt")
+    fill_ecx1(24, "tsc-deadline", "tsc-deadline")
+    fill_ecx1(25, "aes", "aes")
+    fill_ecx1(26, "xsave", "xsave")
+    fill_ecx1(27, "osxsave", "osxsave")
+    fill_ecx1(28, "avx", "avx")
+    fill_ecx1(29, "f16c", "f16c")
+    fill_ecx1(30, "rdrand", "rdrand")
+    fill_ecx1(31, "hypervisor", "hypervisor")
+
+    fill_edx1(0, "fpu", "fpu")
+    fill_edx1(1, "vme", "vme")
+    fill_edx1(2, "de", "de")
+    fill_edx1(3, "pse", "pse")
+    fill_edx1(4, "tsc", "tsc")
+    fill_edx1(5, "msr", "msr")
+    fill_edx1(6, "pae", "pae")
+    fill_edx1(7, "mce", "mce")
+    fill_edx1(8, "cmpxchg8", "cmpxchg8")
+    fill_edx1(9, "apic", "apic")
+    fill_edx1(11, "sysenter", "sysenter")
+    fill_edx1(12, "mtrr", "mtrr")
+    fill_edx1(13, "pge", "pge")
+    fill_edx1(14, "mca", "mca")
+    fill_edx1(15, "cmov", "cmov")
+    fill_edx1(16, "pat", "pat")
+    fill_edx1(17, "pse36", "pse36")
+    fill_edx1(18, "psn", "psn")
+    fill_edx1(19, "clfsh", "clfsh")
+    fill_edx1(21, "ds", "ds")
+    fill_edx1(22, "acpi", "acpi")
+    fill_edx1(23, "mmx", "mmx")
+    fill_edx1(24, "fxsr", "fxsr")
+    fill_edx1(25, "sse", "sse")
+    fill_edx1(26, "sse2", "sse2")
+    fill_edx1(27, "ss", "ss")
+    fill_edx1(28, "htt", "htt")
+    fill_edx1(29, "tm", "tm")
+    fill_edx1(30, "ia64", "ia64")
+    fill_edx1(31, "pbe", "pbe")
+
+    fill_ebx7(0, "fsgsbase", "fsgsbase")
+    fill_ebx7(1, "tsc_adjust", "tsc_adjust")
+    fill_ebx7(3, "bmi1", "bmi1")
+    fill_ebx7(4, "hle", "hle")
+    fill_ebx7(5, "avx2", "avx2")
+    fill_ebx7(7, "smep", "smep")
+    fill_ebx7(8, "bmi2", "bmi2")
+    fill_ebx7(9, "erms", "erms")
+    fill_ebx7(10, "invpcid", "invpcid")
+    fill_ebx7(11, "rtm", "rtm")
+    fill_ebx7(12, "cmt", "cmt")
+    fill_ebx7(14, "mpx", "mpx")
+    fill_ebx7(16, "avx512f", "avx512f")
+    fill_ebx7(17, "avx512dq", "avx512dq")
+    fill_ebx7(18, "rdseed", "rdseed")
+    fill_ebx7(19, "adx", "adx")
+    fill_ebx7(20, "smap", "smap")
+    fill_ebx7(21, "avx512-ifma", "avx512-ifma")
+    fill_ebx7(23, "clflushopt", "clflushopt")
+    fill_ebx7(24, "clwb", "clwb")
+    fill_ebx7(26, "avx512pf", "avx512pf")
+    fill_ebx7(27, "avx512er", "avx512er")
+    fill_ebx7(28, "avx512cd", "avx512cd")
+    fill_ebx7(29, "sha", "sha")
+    fill_ebx7(30, "avx512bw", "avx512bw")
+    fill_ebx7(31, "avx512vl", "avx512vl")
+
+    fill_ecx7(0, "prefetchwt1", "prefetchwt1")
+    fill_ecx7(1, "avx512-vbmi", "avx512-vbmi")
+    fill_ecx7(2, "umip", "umip")
+    fill_ecx7(3, "pku", "pku")
+    fill_ecx7(4, "ospke", "ospke")
+    fill_ecx7(6, "avx512-vbmi2", "avx512-vbmi2")
+    fill_ecx7(8, "gfni", "gfni")
+    fill_ecx7(9, "vaes", "vaes")
+    fill_ecx7(10, "vpclmulqdq", "vpclmulqdq")
+    fill_ecx7(11, "avx512-vnni", "avx512-vnni")
+    fill_ecx7(12, "avx512-bitalg", "avx512-bitalg")
+    fill_ecx7(14, "avx512-vpopcntdq", "avx512-vpopcntdq")
+    fill_ecx7(22, "rdpid", "rdpid")
+    fill_ecx7(25, "cldemote", "cldemote")
+
 
 def get_register_mask(regs):
     """ Take a list of register values and return the calculated mask """
@@ -46,6 +199,8 @@ def get_register_mask(regs):
 def print_xl_masking_config(nodes):
     """ Take a dictionary of nodes containing their registers and print out CPUID masking configuration for xl """
     nomasking = 'x' * 32
+    libxl = []
+    libvirt = []
     eax1_ecx_regs = []
     eax1_edx_regs = []
     eax7_ebx_regs = []
@@ -71,6 +226,52 @@ def print_xl_masking_config(nodes):
     cpuid_config += '"\n'
     cpuid_config += ']'
     print(cpuid_config)
+
+    bitnum = len(eax1_ecx_mask)
+    while bitnum > 0:
+       bitnum -= 1
+       bitval = eax1_ecx_mask[len(eax1_ecx_mask) - 1 - bitnum]
+       if bitval == "0" and libxl_names_ecx1[bitnum]:
+           libxl.append(libxl_names_ecx1[bitnum] + "=0")
+           libvirt.append(libvirt_names_ecx1[bitnum])
+
+    bitnum = len(eax1_edx_mask)
+    while bitnum > 0:
+       bitnum -= 1
+       bitval = eax1_edx_mask[len(eax1_edx_mask) - 1 - bitnum]
+       if bitval == "0" and libxl_names_edx1[bitnum]:
+           libxl.append(libxl_names_edx1[bitnum] + "=0")
+           libvirt.append(libvirt_names_edx1[bitnum])
+
+    bitnum = len(eax7_ebx_mask)
+    while bitnum > 0:
+       bitnum -= 1
+       bitval = eax7_ebx_mask[len(eax7_ebx_mask) - 1 - bitnum]
+       if bitval == "0" and libxl_names_ebx7[bitnum]:
+           libxl.append(libxl_names_ebx7[bitnum] + "=0")
+           libvirt.append(libvirt_names_ebx7[bitnum])
+
+    bitnum = len(eax7_ecx_mask)
+    while bitnum > 0:
+       bitnum -= 1
+       bitval = eax7_ecx_mask[len(eax7_ecx_mask) - 1 - bitnum]
+       if bitval == "0" and libxl_names_ecx7[bitnum]:
+           libxl.append(libxl_names_ecx7[bitnum] + "=0")
+           libvirt.append(libvirt_names_ecx7[bitnum])
+
+    if len(libxl) > 0:
+       output = "cpuid = [ host"
+       for i in libxl:
+           output += "," + i
+       output += " ]"
+       print(output)
+
+       print("<domain>")
+       print("  <cpu>")
+       for i in libvirt:
+           print("    <feature policy='optional' name='%s' />" % i)
+       print("  </cpu>")
+       print("</domain>")
 
 
 def print_verbose_masking_info(nodes):
@@ -140,6 +341,7 @@ if __name__ == '__main__':
         parser.print_help()
         sys.exit(1)
     
+    fill_bit_names()
     nodes = dict()
     for node in args.node_files:
         if os.path.isfile(node):
