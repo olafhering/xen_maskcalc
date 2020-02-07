@@ -327,6 +327,9 @@ if __name__ == '__main__':
     ~$ {0} node1 node2 node3
 
     Use 'zypper install cpuid' to install the cpuid.rpm.
+
+Note: Run 'cpuid' with NATIVE boot instead of dom0 to get the complete cpid value.
+Xen hides some bits from dom0!
     """.format(sys.argv[0])
     parser = argparse.ArgumentParser(
              formatter_class=argparse.RawDescriptionHelpFormatter,
